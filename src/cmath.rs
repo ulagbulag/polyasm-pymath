@@ -16,13 +16,13 @@ use num_complex::Complex64;
 // Public constants (matching Python's cmath module)
 
 /// The mathematical constant e = 2.718281...
-pub const E: f64 = std::f64::consts::E;
+pub const E: f64 = core::f64::consts::E;
 
 /// The mathematical constant π = 3.141592...
-pub const PI: f64 = std::f64::consts::PI;
+pub const PI: f64 = core::f64::consts::PI;
 
 /// The mathematical constant τ = 6.283185...
-pub const TAU: f64 = std::f64::consts::TAU;
+pub const TAU: f64 = core::f64::consts::TAU;
 
 /// Positive infinity.
 pub const INF: f64 = f64::INFINITY;

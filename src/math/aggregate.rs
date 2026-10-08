@@ -1,5 +1,9 @@
 //! Aggregate functions for sequences.
 
+#[cfg(target_abi = "polyasm")]
+use crate::float::F64Ext as _;
+use alloc::vec::Vec;
+
 /// Double-length number represented as hi + lo
 #[derive(Clone, Copy)]
 struct DoubleLength {
@@ -91,7 +95,7 @@ pub fn fsum(iter: impl IntoIterator<Item = f64>) -> crate::Result<f64> {
         for j in 0..p.len() {
             let mut y = p[j];
             if x.abs() < y.abs() {
-                std::mem::swap(&mut x, &mut y);
+                core::mem::swap(&mut x, &mut y);
             }
             let hi = x + y;
             let yr = hi - x;

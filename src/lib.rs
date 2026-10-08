@@ -1,3 +1,7 @@
+#![cfg_attr(target_abi = "polyasm", no_std)]
+
+extern crate alloc;
+
 // Public modules
 #[cfg(feature = "complex")]
 pub mod cmath;
@@ -5,6 +9,8 @@ pub mod math;
 
 // Internal modules
 mod err;
+#[cfg(target_abi = "polyasm")]
+mod float;
 // Native libm via FFI (unix/windows)
 #[cfg(any(unix, windows))]
 pub(crate) mod m;
@@ -16,6 +22,9 @@ pub(crate) mod m;
 mod m_sys;
 #[cfg(test)]
 mod test;
+
+#[cfg(target_abi = "polyasm")]
+use crate::float::F64Ext as _;
 
 // Re-export error types at root level
 pub use err::{Error, Result};
