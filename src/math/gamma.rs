@@ -1,7 +1,10 @@
 //! Special functions: gamma, lgamma, erf, erfc.
 
+use core::f64::consts::PI;
+
+#[cfg(target_abi = "polyasm")]
+use crate::float::F64Ext as _;
 use crate::{Error, mul_add};
-use std::f64::consts::PI;
 
 /// Error function.
 #[inline]

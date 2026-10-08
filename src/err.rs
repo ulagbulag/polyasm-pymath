@@ -1,4 +1,4 @@
-use std::ffi::c_int;
+use core::ffi::c_int;
 
 #[cfg(target_os = "windows")]
 unsafe extern "C" {
@@ -11,12 +11,12 @@ pub enum Error {
     ERANGE = 34,
 }
 
-pub type Result<T> = std::result::Result<T, Error>;
+pub type Result<T> = core::result::Result<T, Error>;
 
 impl TryFrom<c_int> for Error {
     type Error = c_int;
 
-    fn try_from(value: c_int) -> std::result::Result<Self, Self::Error> {
+    fn try_from(value: c_int) -> core::result::Result<Self, Self::Error> {
         match value {
             x if x == Error::EDOM as c_int => Ok(Error::EDOM),
             x if x == Error::ERANGE as c_int => Ok(Error::ERANGE),

@@ -1,3 +1,7 @@
+#![cfg_attr(target_abi = "polyasm", no_std)]
+
+extern crate alloc;
+
 // Public modules
 #[cfg(feature = "complex")]
 pub mod cmath;
@@ -5,6 +9,8 @@ pub mod math;
 
 // Internal modules
 mod err;
+#[cfg(target_abi = "polyasm")]
+mod float;
 // Native libm via FFI (unix/windows)
 #[cfg(any(unix, windows))]
 pub(crate) mod m;
@@ -18,7 +24,9 @@ mod m_sys;
 mod test;
 
 // Re-export error types at root level
-pub use err::{Error, Result};
+pub use self::err::{Error, Result};
+#[cfg(target_abi = "polyasm")]
+use self::float::F64Ext as _;
 
 /// Fused multiply-add operation.
 /// When `mul_add` feature is enabled, uses hardware FMA instruction.

@@ -1,5 +1,7 @@
 //! Floating-point manipulation and validation functions.
 
+#[cfg(target_abi = "polyasm")]
+use crate::float::F64Ext as _;
 use crate::{Error, Result, m};
 
 super::libm_simple!(@1 ceil, floor, trunc);

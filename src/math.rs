@@ -1,5 +1,7 @@
 //! Real number mathematical functions matching Python's math module.
 
+use alloc::vec::Vec;
+
 // Submodules
 mod aggregate;
 #[cfg(feature = "_bigint")]
@@ -158,13 +160,13 @@ pub fn hypot(coords: &[f64]) -> f64 {
 // Mathematical constants
 
 /// The mathematical constant π = 3.141592...
-pub const PI: f64 = std::f64::consts::PI;
+pub const PI: f64 = core::f64::consts::PI;
 
 /// The mathematical constant e = 2.718281...
-pub const E: f64 = std::f64::consts::E;
+pub const E: f64 = core::f64::consts::E;
 
 /// The mathematical constant τ = 6.283185...
-pub const TAU: f64 = std::f64::consts::TAU;
+pub const TAU: f64 = core::f64::consts::TAU;
 
 /// Positive infinity.
 pub const INF: f64 = f64::INFINITY;
